@@ -1,13 +1,20 @@
 .wiki-card {
-  margin: 1rem 0;
+  margin: 0;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .wiki-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+mat-card-header {
+  padding-bottom: 0.5rem;
 }
 
 mat-card-title {
@@ -16,18 +23,30 @@ mat-card-title {
   color: #1a237e;
 }
 
+mat-card-content {
+  flex: 1;
+  overflow: hidden;
+}
+
 .wiki-description {
   color: #424242;
   line-height: 1.5;
   margin-top: 0.5rem;
+  /* For text truncation in case of overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  line-clamp: 5;          /* Standard property for modern browsers */
+  overflow: hidden;
 }
 
 mat-card-actions {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
+  margin-top: auto;
 }
 
 mat-card-actions button {
-  margin-left: auto;
+  margin-left: 0.5rem;
 }
