@@ -38,6 +38,16 @@ export class HomeComponent {
       title: 'Material Design',
       description: 'Material Design is a design language developed by Google in 2014. It uses more grid-based layouts, responsive animations and transitions, padding, and depth effects such as lighting and shadows.',
       link: 'https://en.wikipedia.org/wiki/Material_Design'
+    },
+    {
+      title: 'TypeScript',
+      description: 'TypeScript is a free and open-source high-level programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language.',
+      link: 'https://en.wikipedia.org/wiki/TypeScript'
+    },
+    { 
+      title: 'Web component',
+      description: 'Web components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.',
+      link: 'https://en.wikipedia.org/wiki/Web_Components'
     }
   ];
 
