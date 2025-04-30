@@ -3,9 +3,10 @@
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  height: 100%;
+  height: auto; /* Ensures height fits content */
   display: flex;
   flex-direction: column;
+  /* Removed min-height if previously present */
 }
 
 .wiki-card:hover {
@@ -14,39 +15,62 @@
 }
 
 mat-card-header {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.1rem; /* Minimized padding */
+  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 mat-card-title {
-  font-size: 1.25rem;
+  font-size: 1.05rem; /* Even smaller title */
   font-weight: 500;
   color: #1a237e;
+  margin-bottom: 0;
+  line-height: 1.2; /* Tighter line height for title */
 }
 
 mat-card-content {
-  flex: 1;
+  /* Removed flex: 0 0 auto; Let content size naturally */
   overflow: hidden;
+  padding: 0.2rem 0; /* Minimal padding */
+  min-height: 0; /* Ensure no minimum height interferes */
+  flex-shrink: 0; /* Prevent content from shrinking */
 }
 
 .wiki-description {
   color: #424242;
-  line-height: 1.5;
-  margin-top: 0.5rem;
-  /* For text truncation in case of overflow */
+  line-height: 1.3; /* Even tighter line height */
+  margin-top: 0.2rem;
+  /* For text truncation */
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  line-clamp: 5;          /* Standard property for modern browsers */
+  line-clamp: 4;
   overflow: hidden;
+  font-size: 0.9rem; /* Smaller text */
+  margin-bottom: 0.2rem;
+  /* Calculate exact height for 4 lines of text */
+  height: calc(1.3em * 4); /* line-height × number of lines */
 }
 
 mat-card-actions {
-  padding: 0.5rem;
+  padding: 0.1rem 0.4rem; /* Minimal padding */
   display: flex;
   justify-content: space-between;
-  margin-top: auto;
+  margin-top: auto; /* Push actions to the bottom if needed, but allow card to shrink */
+  margin-bottom: 0; /* Remove bottom margin */
+  flex-shrink: 0; /* Prevent actions from shrinking */
 }
 
 mat-card-actions button {
-  margin-left: 0.5rem;
+  margin-left: 0.4rem;
+  transform: scale(0.85); /* Even smaller buttons */
+}
+
+/* Remove padding from the Angular Material card bottom */
+::ng-deep .mat-mdc-card-content:last-child {
+  padding-bottom: 0;
+}
+
+::ng-deep .mat-mdc-card-actions:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

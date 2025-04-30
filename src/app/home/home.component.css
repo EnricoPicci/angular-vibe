@@ -41,19 +41,19 @@ mat-card {
 }
 
 /* Add this to the wiki-card component CSS to maintain proper aspect ratio */
-::ng-deep app-wiki-card {
+/* ::ng-deep app-wiki-card {
   display: block;
 }
 
 ::ng-deep app-wiki-card .wiki-card {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
   /* Golden ratio for width:height proportion (approximately 1:1.618) */
-  aspect-ratio: 1/1.3;
+  /* aspect-ratio: 1/1.3;
 }
 
 ::ng-deep app-wiki-card mat-card-content {
   flex: 1;
   overflow: hidden;
-}
+} */
