@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { WikiCardComponent } from '../wiki-card/wiki-card.component';
+import { WikiCardComponent } from '../../components/wiki-card/wiki-card.component';
 
 @Component({
   selector: 'app-home',
