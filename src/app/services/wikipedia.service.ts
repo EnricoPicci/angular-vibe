@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 export interface Thumbnail {
   url: string;
@@ -16,6 +16,7 @@ export interface WikiPage {
   excerpt: string;
   description?: string;
   thumbnail?: Thumbnail;
+  link?: string;
 }
 
 export interface WikiSearchResponse {
@@ -30,6 +31,7 @@ export interface WikiSearchResponse {
 })
 export class WikipediaService {
   private readonly API_URL = 'https://en.wikipedia.org/w/rest.php/v1/search/title';
+  private readonly WIKI_BASE = 'https://en.wikipedia.org/wiki/';
 
   constructor(private http: HttpClient) { }
 
@@ -44,6 +46,13 @@ export class WikipediaService {
       .set('limit', limit.toString());
 
     return this.http.get<WikiSearchResponse>(this.API_URL, { params }).pipe(
+      map(response => ({
+        ...response,
+        pages: response.pages.map(page => ({
+          ...page,
+          link: this.WIKI_BASE + page.key
+        }))
+      })),
       catchError((err: HttpErrorResponse) => {
         console.error('Wikipedia API error', err);
         return throwError(() => new Error(err.message || 'Wikipedia API error'));
