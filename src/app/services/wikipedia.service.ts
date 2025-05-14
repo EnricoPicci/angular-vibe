@@ -26,6 +26,39 @@ export interface WikiSearchResponse {
   total: number;
 }
 
+export interface WikiSummaryContentUrls {
+  desktop: { page: string };
+  mobile: { page: string };
+}
+
+export interface WikiSummaryThumbnail {
+  source: string;
+  width: number;
+  height: number;
+}
+
+export interface WikiSummaryResponse {
+  type: string;
+  title: string;
+  displaytitle: string;
+  namespace: { id: number; text: string };
+  wikibase_item?: string;
+  titles: { canonical: string; normalized: string; display: string };
+  pageid: number;
+  thumbnail?: WikiSummaryThumbnail;
+  originalimage?: WikiSummaryThumbnail;
+  lang: string;
+  dir: string;
+  revision: string;
+  tid: string;
+  timestamp: string;
+  description?: string;
+  description_source?: string;
+  content_urls: WikiSummaryContentUrls;
+  extract: string;
+  extract_html: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,6 +89,20 @@ export class WikipediaService {
       catchError((err: HttpErrorResponse) => {
         console.error('Wikipedia API error', err);
         return throwError(() => new Error(err.message || 'Wikipedia API error'));
+      })
+    );
+  }
+
+  /**
+   * Fetch the summary and content of a Wikipedia article by its key.
+   * @param key The article key (from WikiPage.key)
+   */
+  getArticleSummary(key: string): Observable<WikiSummaryResponse> {
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(key)}`;
+    return this.http.get<WikiSummaryResponse>(url).pipe(
+      catchError((err: HttpErrorResponse) => {
+        console.error('Wikipedia summary API error', err);
+        return throwError(() => new Error(err.message || 'Wikipedia summary API error'));
       })
     );
   }

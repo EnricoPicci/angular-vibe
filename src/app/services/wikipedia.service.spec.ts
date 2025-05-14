@@ -45,4 +45,19 @@ describe('WikipediaService (real HTTP, standalone-style)', () => {
       }
     });
   });
+
+  it('should fetch article summary for a valid key', (done) => {
+    service.getArticleSummary('Angular_(application_platform)').subscribe({
+      next: (summary) => {
+        expect(summary).toBeDefined();
+        expect(summary.title).toContain('Angular');
+        expect(summary.extract).toBeTruthy();
+        done();
+      },
+      error: err => {
+        fail(err);
+        done();
+      }
+    });
+  });
 });
