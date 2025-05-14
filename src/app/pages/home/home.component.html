@@ -25,7 +25,9 @@
       *ngFor="let article of wikiArticles" 
       [title]="article.title" 
       [description]="article.description || ''"
-      [link]="article.link || ''">
+      [link]="article.link || ''"
+      [key]="article.key"
+      (readMore)="onReadMore(article)">
     </app-wiki-card>
   </div>
 </div>

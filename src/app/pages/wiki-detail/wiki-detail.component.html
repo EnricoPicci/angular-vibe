@@ -1,4 +1,10 @@
 <div class="wiki-detail-container">
   <h2>Wiki Detail Page</h2>
-  <!-- Detail content will go here -->
+  <div *ngIf="selectedWikiCard; else noCard">
+    <h3>{{ selectedWikiCard.title }}</h3>
+    <p>{{ selectedWikiCard.description }}</p>
+  </div>
+  <ng-template #noCard>
+    <p>No WikiCard selected.</p>
+  </ng-template>
 </div>

@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { WikiCardComponent } from '../../components/wiki-card/wiki-card.component';
 import { WikipediaService, WikiPage } from '../../services/wikipedia.service';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomeComponent {
   searchQuery: string = '';
   wikiArticles: WikiPage[] = [];
 
-  constructor(private wikipediaService: WikipediaService) {}
+  constructor(private wikipediaService: WikipediaService, private stateService: StateService) {}
 
   onSearch(): void {
     if (!this.searchQuery.trim()) {
@@ -45,5 +46,9 @@ export class HomeComponent {
         this.wikiArticles = [];
       }
     });
+  }
+
+  onReadMore(article: WikiPage): void {
+    this.stateService.setSelectedWikiCard(article);
   }
 }

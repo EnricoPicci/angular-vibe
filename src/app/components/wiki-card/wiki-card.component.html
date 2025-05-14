@@ -7,7 +7,7 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions>
-    <a mat-button [href]="link" target="_blank" *ngIf="link">
+    <a mat-button *ngIf="key" [routerLink]="['/detail', key]" (click)="readMore.emit()">
       <mat-icon>open_in_new</mat-icon> READ MORE
     </a>
     <button mat-icon-button aria-label="Share article">
