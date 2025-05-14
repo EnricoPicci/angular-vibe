@@ -1,3 +1,15 @@
 .wiki-detail-container {
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+mat-card {
+  max-width: 600px;
+  width: 100%;
+}
+.wiki-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }
